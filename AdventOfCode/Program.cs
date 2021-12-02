@@ -1,7 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using AdventOfCode.Arguments;
+using AdventOfCode.Levels;
 using AdventOfCode.Levels._01;
+using AdventOfCode.Levels._02;
 using CommandLine;
 
 var setup = Parser.Default.ParseArguments<Options>(args)
@@ -24,17 +26,25 @@ var setup = Parser.Default.ParseArguments<Options>(args)
         o => new Setup(o.Level!.Value, o.Type!.Value, o.Round!.Value),
         _ => throw new ArgumentException("Unable to create Setup for the application"));
 
+static ALevel Level(int level)
+{
+    return level switch
+    {
+        1 => new SonarSweep(),
+        2 => new Dive(),
+        _ => throw new InvalidOperationException("Other levels are not implemented yet")
+    };
+}
+
 Console.WriteLine("Welcome to the Advent of Code!");
 Console.WriteLine("Level: [{0}] Difficulty: [{1}] Round: [{2}]", setup.Level, setup.Type.ToString(), setup.Round);
 Console.WriteLine("============ START ============");
 
 try
 {
-    return setup.Level switch
-    {
-        1 => await new SubmarineDepth().Configure(setup).RunAsync(),
-        _ => throw new InvalidOperationException("Other levels are not implemented yet")
-    };
+    return await Level(setup.Level)
+        .Configure(setup)
+        .RunAsync();
 }
 catch (Exception e)
 {

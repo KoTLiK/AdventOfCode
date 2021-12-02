@@ -2,7 +2,7 @@ using System.Text;
 
 namespace AdventOfCode.Levels._01;
 
-public class SubmarineDepth : ALevel
+public class SonarSweep : ALevel
 {
     protected override Task Run()
     {

@@ -2,7 +2,7 @@
   "profiles": {
     "AdventOfCode": {
       "commandName": "Project",
-      "commandLineArgs": "-l 1 -t Quest -r 2",
+      "commandLineArgs": "-l 2 -t Quest -r 2",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

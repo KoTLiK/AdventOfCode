@@ -46,9 +46,11 @@ public abstract class ALevel : ILevel
         }
     }
 
+    protected static IEnumerable<string> GetFileNames()
+        => Directory.GetFiles($"{GetPath()}/Assets", "*", SearchOption.AllDirectories);
+
     private string? GetFileName()
-        => Directory.GetFiles($"{GetPath()}/Assets", "*", SearchOption.AllDirectories)
-            .FirstOrDefault(name => name.Contains(this.partialFileName));
+        => GetFileNames().FirstOrDefault(name => name.Contains(this.partialFileName));
 
     private static string GetPath()
         => Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).AbsolutePath)
