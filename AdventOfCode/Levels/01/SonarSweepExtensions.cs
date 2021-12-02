@@ -20,7 +20,7 @@ public static class SonarSweepExtensions
     
     public static IEnumerable<int> SlidingWindowOfSums(this IEnumerable<int> source, int size)
     {
-        var queue = new Queue<int>(size << 1 - 1);
+        var queue = new Queue<int>(size);
 
         foreach (var value in source)
         {
