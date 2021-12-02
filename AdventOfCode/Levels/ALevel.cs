@@ -4,18 +4,24 @@ using AdventOfCode.Arguments;
 
 namespace AdventOfCode.Levels;
 
-public abstract class ALevel : ILevel
+public abstract class ALevel<T> : ILevel
 {
+    private readonly IResultCollector<T> _resultCollector;
     protected Setup? Setup;
-    private string partialFileName = string.Empty;
+    private string _partialFileName = string.Empty;
 
     protected string FileName
         => GetFileName() ?? throw new InvalidOperationException("Unable to find file in file-system");
 
-    public ALevel Configure(Setup setup)
+    protected ALevel(IResultCollector<T> resultCollector)
     {
-        this.Setup = setup;
-        this.partialFileName = $"{this.Setup?.Level}/{this.Setup?.Type.ToString()}";
+        _resultCollector = resultCollector;
+    }
+
+    public ILevel Configure(Setup setup)
+    {
+        Setup = setup;
+        _partialFileName = $"{Setup?.Level}/{Setup?.Type.ToString()}";
         return this;
     }
 
@@ -32,8 +38,9 @@ public abstract class ALevel : ILevel
 
     protected abstract Task Run();
 
-    protected static Task Result<T>(T result)
+    protected Task Result(T result)
     {
+        _resultCollector.Collect(result);
         Console.WriteLine(JsonSerializer.Serialize(result));
         return Task.CompletedTask;
     }
@@ -46,11 +53,11 @@ public abstract class ALevel : ILevel
         }
     }
 
-    protected static IEnumerable<string> GetFileNames()
-        => Directory.GetFiles($"{GetPath()}/Assets", "*", SearchOption.AllDirectories);
-
     private string? GetFileName()
-        => GetFileNames().FirstOrDefault(name => name.Contains(this.partialFileName));
+        => GetFileNames().FirstOrDefault(name => name.Contains(_partialFileName));
+
+    private static IEnumerable<string> GetFileNames()
+        => Directory.GetFiles($"{GetPath()}/Assets", "*", SearchOption.AllDirectories);
 
     private static string GetPath()
         => Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).AbsolutePath)

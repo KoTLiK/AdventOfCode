@@ -2,21 +2,26 @@ using System.Text;
 
 namespace AdventOfCode.Levels._02;
 
-public class Dive : ALevel
+public class Dive : ALevel<int>
 {
+    public Dive(IResultCollector<int> resultCollector)
+        : base(resultCollector)
+    {
+    }
+
     protected override Task Run()
     {
-        using var fileStream = File.Open(this.FileName, FileMode.Open, FileAccess.Read);
+        using var fileStream = File.Open(FileName, FileMode.Open, FileAccess.Read);
         using var reader = new StreamReader(fileStream, Encoding.UTF8);
 
         var submarine = new SubmarineMovement();
         foreach (var command in ReadLine(reader).Select(ParseLine))
         {
-            if (this.Setup is {Round: 1})
+            if (Setup is {Round: 1})
             {
                 submarine.Move(command);
             }
-            else if (this.Setup is {Round: 2})
+            else if (Setup is {Round: 2})
             {
                 submarine.MoveAim(command);
             }

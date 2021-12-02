@@ -26,12 +26,12 @@ var setup = Parser.Default.ParseArguments<Options>(args)
         o => new Setup(o.Level!.Value, o.Type!.Value, o.Round!.Value),
         _ => throw new ArgumentException("Unable to create Setup for the application"));
 
-static ALevel Level(int level)
+static ILevel Level(int level)
 {
     return level switch
     {
-        1 => new SonarSweep(),
-        2 => new Dive(),
+        1 => new SonarSweep(new ResultCollector<int>()),
+        2 => new Dive(new ResultCollector<int>()),
         _ => throw new InvalidOperationException("Other levels are not implemented yet")
     };
 }
@@ -40,6 +40,7 @@ Console.WriteLine("Welcome to the Advent of Code!");
 Console.WriteLine("Level: [{0}] Difficulty: [{1}] Round: [{2}]", setup.Level, setup.Type.ToString(), setup.Round);
 Console.WriteLine("============ START ============");
 
+// TODO unit tests for levels to remember correct answers Example 1, 2 & Quest 1, 2
 try
 {
     return await Level(setup.Level)
