@@ -8,7 +8,7 @@ public class SubmarineMovement
 
     public int Aim { get; private set; }
 
-    public void Move(SubmarineCommand command)
+    public void Move(Command command)
     {
         switch (command.Movement)
         {
@@ -24,7 +24,7 @@ public class SubmarineMovement
         }
     }
 
-    public void MoveAim(SubmarineCommand command)
+    public void MoveAim(Command command)
     {
         switch (command.Movement)
         {

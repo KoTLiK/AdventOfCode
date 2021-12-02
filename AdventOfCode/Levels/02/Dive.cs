@@ -30,7 +30,7 @@ public class Dive : ALevel<int>
         return Result(submarine.Answer());
     }
 
-    private static SubmarineCommand ParseLine(string line)
+    private static Command ParseLine(string line)
     {
         var parts = line.Split(' ')
             .Select(p => p.Trim())
@@ -38,6 +38,6 @@ public class Dive : ALevel<int>
         var movement = Enum.Parse<Movement>(parts[0], true);
         var value = int.Parse(parts[1]);
         
-        return new SubmarineCommand(movement, value);
+        return new Command(movement, value);
     }
 }
