@@ -37,7 +37,9 @@ static ILevel Level(int level)
 }
 
 Console.WriteLine("Welcome to the Advent of Code!");
-Console.WriteLine("Level: [{0}] Difficulty: [{1}] Round: [{2}]", setup.Level, setup.Type.ToString(), setup.Round);
+Console.WriteLine("     Level:    {0}", setup.Level);
+Console.WriteLine("Difficulty:    {0}", setup.Type.ToString());
+Console.WriteLine("     Round:    {0}", setup.Round);
 Console.WriteLine("============ START ============");
 
 // TODO unit tests for levels to remember correct answers Example 1, 2 & Quest 1, 2
