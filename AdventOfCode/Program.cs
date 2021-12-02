@@ -42,7 +42,6 @@ Console.WriteLine("Difficulty:    {0}", setup.Type.ToString());
 Console.WriteLine("     Round:    {0}", setup.Round);
 Console.WriteLine("============ START ============");
 
-// TODO unit tests for levels to remember correct answers Example 1, 2 & Quest 1, 2
 try
 {
     return await Level(setup.Level)
