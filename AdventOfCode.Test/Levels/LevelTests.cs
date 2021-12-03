@@ -28,7 +28,7 @@ public class LevelTests
             ?.GetValue(new Level()) as int?
                     ?? throw new NullException("Level value is not defined");
 
-        var collector = new ResultCollector<int>();
+        var collector = new ResultCollector<TResult>();
         var setup = new Setup(level, type, round);
 
         var exitCode = await (Activator.CreateInstance(typeof(TLevel), collector) as TLevel)!
