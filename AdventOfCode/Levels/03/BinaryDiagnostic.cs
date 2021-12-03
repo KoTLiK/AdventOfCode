@@ -32,7 +32,7 @@ public class BinaryDiagnostic : ALevel<int>
     private static int Co2ScrubberRating(IEnumerable<string> lines, int length)
         => RatingCalculator(lines, BinaryDiagnosticExtensions.LeastCommon, length, 0);
 
-    private static int RatingCalculator(IEnumerable<string> lines, Func<int, int> selector, int length, int position)
+    private static int RatingCalculator(IEnumerable<string> lines, Func<int, char> selector, int length, int position)
     {
         if (position >= length)
         {
@@ -40,16 +40,11 @@ public class BinaryDiagnostic : ALevel<int>
         }
 
         var common = selector.Invoke(lines.BitOccurence(position));
-        var filtered = lines.Where(line => int.Parse(line[position].ToString()) == common);
+        var filtered = lines.Where(line => line[position] == common);
 
-        if (filtered.Count() == 1)
-        {
-            return filtered.First()
-                .Select(c => int.Parse(c.ToString()))
-                .ConvertBits(b => b > 0 ? 1 : 0);
-        }
-
-        return RatingCalculator(filtered, selector, length, position + 1);
+        return filtered.Count() == 1
+            ? Convert.ToInt32(filtered.First(), 2)
+            : RatingCalculator(filtered, selector, length, position + 1);
     }
 
     private static int PowerConsumption(IReadOnlyList<string> lines)

@@ -13,10 +13,10 @@ public static class BinaryDiagnosticExtensions
     public static int ConvertLeastCommon(this IEnumerable<int> source)
         => source.ConvertBits(LeastCommon);
 
-    public static int MostCommon(int s) => s >= 0 ? 1 : 0;
+    public static char MostCommon(int s) => s >= 0 ? '1' : '0';
 
-    public static int LeastCommon(int s) => s < 0 ? 1 : 0;
+    public static char LeastCommon(int s) => s < 0 ? '1' : '0';
 
-    public static int ConvertBits(this IEnumerable<int> source, Func<int, int> selector)
-        => source.Select(selector).Aggregate(0, (current, bit) => (current << 1) + bit);
+    public static int ConvertBits(this IEnumerable<int> source, Func<int, char> selector)
+        => Convert.ToInt32(string.Join("", source.Select(selector).ToArray()), 2);
 }
