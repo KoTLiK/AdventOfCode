@@ -54,9 +54,9 @@ public class LevelTests
 
     [Theory]
     [InlineData(LevelType.Example, 1, 198)]
-    // [InlineData(LevelType.Example, 2, 230)]
+    [InlineData(LevelType.Example, 2, 230)]
     [InlineData(LevelType.Quest, 1, 1092896)]
-    // [InlineData(LevelType.Quest, 2, 0)]
+    [InlineData(LevelType.Quest, 2, 4672151)]
     public async Task BinaryDiagnostic(LevelType type, int round, int result)
     {
         var collector = new ResultCollector<int>();

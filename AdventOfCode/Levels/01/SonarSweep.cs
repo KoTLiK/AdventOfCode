@@ -12,7 +12,7 @@ public class SonarSweep : ALevel<int>
         int? previousValue = null;
         var parsedLines = ReadLine(reader).Select(int.Parse);
 
-        var roundModifications = Setup!.Round == 1
+        var roundModifications = Setup.Round == 1
             ? parsedLines
             : parsedLines.SlidingWindowOfSums(3);
 

@@ -10,35 +10,59 @@ public class BinaryDiagnostic : ALevel<int>
     protected override int Run(StreamReader reader)
     {
         var lines = ReadLine(reader).ToList();
+        var result = Setup.Round == 1
+            ? PowerConsumption(lines)
+            : LifeSupportRating(lines);
 
-        var counters = new List<int>(lines.First().Length);
-        for (var i = 0; i < lines.First().Length; i++)
+        return result;
+    }
+
+    private static int LifeSupportRating(IReadOnlyList<string> lines)
+    {
+        var length = lines[0].Length;
+        var oxygen = OxygenGeneratorRating(lines, length);
+        var co2 = Co2ScrubberRating(lines, length);
+
+        return oxygen * co2;
+    }
+
+    private static int OxygenGeneratorRating(IEnumerable<string> lines, int length)
+        => RatingCalculator(lines, BinaryDiagnosticExtensions.MostCommon, length, 0);
+
+    private static int Co2ScrubberRating(IEnumerable<string> lines, int length)
+        => RatingCalculator(lines, BinaryDiagnosticExtensions.LeastCommon, length, 0);
+
+    private static int RatingCalculator(IEnumerable<string> lines, Func<int, int> selector, int length, int position)
+    {
+        if (position >= length)
         {
-            counters.Add(0);
+            throw new ArgumentException("Unable to continue", nameof(position));
         }
 
-        foreach (var line in lines)
+        var common = selector.Invoke(lines.BitOccurence(position));
+        var filtered = lines.Where(line => int.Parse(line[position].ToString()) == common);
+
+        if (filtered.Count() == 1)
         {
-            for (var i = 0; i < line.Length; i++)
-            {
-                if (line[i] is '1')
-                {
-                    counters[i]++;
-                }
-                else
-                {
-                    counters[i]--;
-                }
-            }
+            return filtered.First()
+                .Select(c => int.Parse(c.ToString()))
+                .ConvertBits(b => b > 0 ? 1 : 0);
         }
 
-        var mostCommon = counters
-            .Select(counter => counter > 0 ? 1 : 0)
-            .Aggregate(0, (current, bit) => (current << 1) + bit);
+        return RatingCalculator(filtered, selector, length, position + 1);
+    }
 
-        var leastCommon = counters
-            .Select(counter => counter > 0 ? 0 : 1)
-            .Aggregate(0, (current, bit) => (current << 1) + bit);
+    private static int PowerConsumption(IReadOnlyList<string> lines)
+    {
+        var length = lines[0].Length;
+        var counters = new List<int>(length);
+        for (var i = 0; i < length; i++)
+        {
+            counters.Add(lines.BitOccurence(i));
+        }
+
+        var mostCommon = counters.ConvertMostCommon();
+        var leastCommon = counters.ConvertLeastCommon();
 
         return mostCommon * leastCommon;
     }

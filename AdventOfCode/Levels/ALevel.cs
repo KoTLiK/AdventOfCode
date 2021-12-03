@@ -8,7 +8,7 @@ namespace AdventOfCode.Levels;
 public abstract class ALevel<T> : ILevel
 {
     private readonly IResultCollector<T> _resultCollector;
-    protected Setup? Setup;
+    protected Setup Setup = null!;
     private string _partialFileName = string.Empty;
 
     private string FileName
