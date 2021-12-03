@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace AdventOfCode.Levels._02;
 
 public class Dive : ALevel<int>
@@ -9,11 +7,8 @@ public class Dive : ALevel<int>
     {
     }
 
-    protected override Task Run()
+    protected override int Run(StreamReader reader)
     {
-        using var fileStream = File.Open(FileName, FileMode.Open, FileAccess.Read);
-        using var reader = new StreamReader(fileStream, Encoding.UTF8);
-
         var submarine = new SubmarineMovement();
         foreach (var command in ReadLine(reader).Select(ParseLine))
         {
@@ -27,7 +22,7 @@ public class Dive : ALevel<int>
             }
         }
 
-        return Result(submarine.Answer());
+        return submarine.Answer();
     }
 
     private static Command ParseLine(string line)

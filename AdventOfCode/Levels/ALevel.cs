@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text;
 using System.Text.Json;
 using AdventOfCode.Arguments;
 
@@ -10,7 +11,7 @@ public abstract class ALevel<T> : ILevel
     protected Setup? Setup;
     private string _partialFileName = string.Empty;
 
-    protected string FileName
+    private string FileName
         => GetFileName() ?? throw new InvalidOperationException("Unable to find file in file-system");
 
     protected ALevel(IResultCollector<T> resultCollector)
@@ -25,25 +26,20 @@ public abstract class ALevel<T> : ILevel
         return this;
     }
 
-    public virtual async Task<int> RunAsync()
+    public virtual Task<int> RunAsync()
     {
         if (Setup is null)
         {
-            return 42;
+            return Task.FromResult(42);
         }
 
-        await Run();
-        return 0;
+        using var reader = ContentStreamReader();
+        Result(Run(reader));
+
+        return Task.FromResult(0);
     }
 
-    protected abstract Task Run();
-
-    protected Task Result(T result)
-    {
-        _resultCollector.Collect(result);
-        Console.WriteLine(JsonSerializer.Serialize(result));
-        return Task.CompletedTask;
-    }
+    protected abstract T Run(StreamReader reader);
 
     protected static IEnumerable<string> ReadLine(TextReader reader)
     {
@@ -52,6 +48,15 @@ public abstract class ALevel<T> : ILevel
             yield return line;
         }
     }
+
+    private void Result(T result)
+    {
+        _resultCollector.Collect(result);
+        Console.WriteLine(JsonSerializer.Serialize(result));
+    }
+
+    private StreamReader ContentStreamReader()
+        => new StreamReader(File.Open(FileName, FileMode.Open, FileAccess.Read), Encoding.UTF8);
 
     private string? GetFileName()
         => GetFileNames().FirstOrDefault(name => name.Contains(_partialFileName));

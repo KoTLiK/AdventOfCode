@@ -7,6 +7,10 @@
     "2_Example_1": { "commandName": "Project", "commandLineArgs": "-l 2 -t Example -r 1" },
     "2_Example_2": { "commandName": "Project", "commandLineArgs": "-l 2 -t Example -r 2" },
     "2_Quest_1": { "commandName": "Project", "commandLineArgs": "-l 2 -t Quest -r 1" },
-    "2_Quest_2": { "commandName": "Project", "commandLineArgs": "-l 2 -t Quest -r 2" }
+    "2_Quest_2": { "commandName": "Project", "commandLineArgs": "-l 2 -t Quest -r 2" },
+    "3_Example_1": { "commandName": "Project", "commandLineArgs": "-l 3 -t Example -r 1" },
+    "3_Example_2": { "commandName": "Project", "commandLineArgs": "-l 3 -t Example -r 2" },
+    "3_Quest_1": { "commandName": "Project", "commandLineArgs": "-l 3 -t Quest -r 1" },
+    "3_Quest_2": { "commandName": "Project", "commandLineArgs": "-l 3 -t Quest -r 2" }
   }
 }

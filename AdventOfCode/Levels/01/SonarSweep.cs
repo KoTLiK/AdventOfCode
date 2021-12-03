@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace AdventOfCode.Levels._01;
 
 public class SonarSweep : ALevel<int>
@@ -9,11 +7,8 @@ public class SonarSweep : ALevel<int>
     {
     }
 
-    protected override Task Run()
+    protected override int Run(StreamReader reader)
     {
-        using var fileStream = File.Open(FileName, FileMode.Open, FileAccess.Read);
-        using var reader = new StreamReader(fileStream, Encoding.UTF8);
-
         int? previousValue = null;
         var parsedLines = ReadLine(reader).Select(int.Parse);
 
@@ -21,8 +16,8 @@ public class SonarSweep : ALevel<int>
             ? parsedLines
             : parsedLines.SlidingWindowOfSums(3);
 
-        var value = roundModifications.IncreaseCheck(previousValue).Count(check => check == true);
-
-        return Result(value);
+        return roundModifications
+            .IncreaseCheck(previousValue)
+            .Count(check => check == true);
     }
 }
