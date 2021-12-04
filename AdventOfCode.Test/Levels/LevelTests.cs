@@ -5,6 +5,7 @@ using AdventOfCode.Levels;
 using AdventOfCode.Levels._01;
 using AdventOfCode.Levels._02;
 using AdventOfCode.Levels._03;
+using AdventOfCode.Levels._04;
 using FluentAssertions;
 using Xunit;
 using Xunit.Sdk;
@@ -18,6 +19,7 @@ public class LevelTests
         public const int SonarSweep = 1;
         public const int Dive = 2;
         public const int BinaryDiagnostic = 3;
+        public const int GiantSquid = 4;
     }
 
     private static async Task Test<TLevel, TResult>(LevelType type, int round, int result)
@@ -61,4 +63,12 @@ public class LevelTests
     [InlineData(LevelType.Quest, 2, 4672151)]
     public Task BinaryDiagnostic(LevelType type, int round, int result)
         => Test<BinaryDiagnostic, int>(type, round, result);
+
+    [Theory]
+    [InlineData(LevelType.Example, 1, 4512)]
+    [InlineData(LevelType.Example, 2, 1924)]
+    [InlineData(LevelType.Quest, 1, 55770)]
+    [InlineData(LevelType.Quest, 2, 2980)]
+    public Task Day4(LevelType type, int round, int result)
+        => Test<GiantSquid, int>(type, round, result);
 }

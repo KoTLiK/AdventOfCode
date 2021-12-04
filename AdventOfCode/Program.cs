@@ -5,6 +5,7 @@ using AdventOfCode.Levels;
 using AdventOfCode.Levels._01;
 using AdventOfCode.Levels._02;
 using AdventOfCode.Levels._03;
+using AdventOfCode.Levels._04;
 using CommandLine;
 
 var setup = Parser.Default.ParseArguments<Options>(args)
@@ -34,6 +35,7 @@ static ILevel Level(int level)
         1 => new SonarSweep(new ResultCollector<int>()),
         2 => new Dive(new ResultCollector<int>()),
         3 => new BinaryDiagnostic(new ResultCollector<int>()),
+        4 => new GiantSquid(new ResultCollector<int>()),
         _ => throw new InvalidOperationException("Other levels are not implemented yet")
     };
 }
