@@ -24,10 +24,18 @@ public static class HydrothermalVentureExtensions
     {
         var x = from;
         if (x <= to)
+        {
             while (x <= to)
+            {
                 yield return x++;
+            }
+        }
         else
+        {
             while (x >= to)
+            {
                 yield return x--;
+            }
+        }
     }
 }
