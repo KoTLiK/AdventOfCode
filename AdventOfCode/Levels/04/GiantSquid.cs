@@ -4,7 +4,8 @@ namespace AdventOfCode.Levels._04;
 
 public class GiantSquid : ALevel<int>
 {
-    public GiantSquid(IResultCollector<int> resultCollector) : base(resultCollector)
+    public GiantSquid(IResultCollector<int> resultCollector)
+        : base(resultCollector)
     {
     }
 

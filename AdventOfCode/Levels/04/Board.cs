@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace AdventOfCode.Levels._04;
 
 public class Board

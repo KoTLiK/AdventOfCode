@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AdventOfCode.Arguments;
 using AdventOfCode.Levels;
@@ -6,6 +7,7 @@ using AdventOfCode.Levels._01;
 using AdventOfCode.Levels._02;
 using AdventOfCode.Levels._03;
 using AdventOfCode.Levels._04;
+using AdventOfCode.Levels._05;
 using FluentAssertions;
 using Xunit;
 using Xunit.Sdk;
@@ -20,6 +22,7 @@ public class LevelTests
         public const int Dive = 2;
         public const int BinaryDiagnostic = 3;
         public const int GiantSquid = 4;
+        public const int HydrothermalVenture = 5;
     }
 
     private static async Task Test<TLevel, TResult>(LevelType type, int round, int result)
@@ -71,4 +74,12 @@ public class LevelTests
     [InlineData(LevelType.Quest, 2, 2980)]
     public Task GiantSquid(LevelType type, int round, int result)
         => Test<GiantSquid, int>(type, round, result);
+
+    [Theory]
+    [InlineData(LevelType.Example, 1, 5)]
+    [InlineData(LevelType.Example, 2, 12)]
+    [InlineData(LevelType.Quest, 1, 5084)]
+    [InlineData(LevelType.Quest, 2, 17882)]
+    public Task HydrothermalVenture(LevelType type, int round, int result)
+        => Test<HydrothermalVenture, int>(type, round, result);
 }
