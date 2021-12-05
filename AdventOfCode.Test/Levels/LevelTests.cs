@@ -69,6 +69,6 @@ public class LevelTests
     [InlineData(LevelType.Example, 2, 1924)]
     [InlineData(LevelType.Quest, 1, 55770)]
     [InlineData(LevelType.Quest, 2, 2980)]
-    public Task Day4(LevelType type, int round, int result)
+    public Task GiantSquid(LevelType type, int round, int result)
         => Test<GiantSquid, int>(type, round, result);
 }
