@@ -1,3 +1,5 @@
+using AdventOfCode.Levels._05;
+
 namespace AdventOfCode.Levels._06;
 
 public class LanternFish : ALevel<decimal>
@@ -8,11 +10,7 @@ public class LanternFish : ALevel<decimal>
 
     protected override decimal Run(StreamReader reader)
     {
-        var fishCounter = new Dictionary<int, decimal>(8);
-        for (var i = 0; i <= 8; i++)
-        {
-            fishCounter[i] = 0;
-        }
+        var fishCounter = 0.Generate(8).ToDictionary(k => k, _ => 0m);
 
         var initialFishes = ReadLine(reader)
             .SelectMany(line => line.Split(','))
