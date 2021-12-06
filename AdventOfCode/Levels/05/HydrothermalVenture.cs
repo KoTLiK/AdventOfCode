@@ -9,10 +9,10 @@ public class HydrothermalVenture : ALevel<int>
 
     protected override int Run(StreamReader reader)
         => ReadLine(reader)
-            .CreateVectors()
-            .Where(v => Setup.Round == 2 || v.IsHorizontalOrVertical)
-            .SelectMany(v => v.Points())
+            .CreateLines()
+            .Where(l => Setup.Round == 2 || l.IsHorizontalOrVertical)
+            .SelectMany(l => l.Points())
             .GroupBy(p => p)
-            .Select(g => (g.Key, Count: g.Count()))
-            .Count(g => g.Count > 1);
+            .Select(g => g.Count())
+            .Count(c => c > 1);
 }

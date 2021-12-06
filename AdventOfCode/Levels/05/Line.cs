@@ -3,7 +3,7 @@ using System.Diagnostics;
 namespace AdventOfCode.Levels._05;
 
 [DebuggerDisplay("[({Start.X},{Start.Y}) -> ({End.X},{End.Y}): {IsHorizontalOrVertical}]")]
-public sealed record Vector(Point Start, Point End)
+public sealed record Line(Point Start, Point End)
 {
     public bool IsHorizontalOrVertical { get; }
         = Start.IsHorizontal(End) || Start.IsVertical(End);

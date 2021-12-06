@@ -2,7 +2,7 @@ namespace AdventOfCode.Levels._05;
 
 public static class HydrothermalVentureExtensions
 {
-    public static IEnumerable<Vector> CreateVectors(this IEnumerable<string> source)
+    public static IEnumerable<Line> CreateLines(this IEnumerable<string> source)
     {
         foreach (var line in source)
         {
@@ -10,7 +10,7 @@ public static class HydrothermalVentureExtensions
             var start = CreatePoint(rawPoints[0]);
             var end = CreatePoint(rawPoints[1]);
 
-            yield return new Vector(start, end);
+            yield return new Line(start, end);
         }
 
         static Point CreatePoint(string rawPoint)
