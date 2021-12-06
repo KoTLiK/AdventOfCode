@@ -10,8 +10,8 @@ public sealed record Vector(Point Start, Point End)
 
     public IEnumerable<Point> Points()
     {
-        var x = Start.X.Generate(End.X).ToList();
-        var y = Start.Y.Generate(End.Y).ToList();
+        var x = Start.X.To(End.X).ToList();
+        var y = Start.Y.To(End.Y).ToList();
 
         if (x.Count == 1)
         {

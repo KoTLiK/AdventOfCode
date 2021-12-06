@@ -20,7 +20,7 @@ public static class HydrothermalVentureExtensions
         }
     }
 
-    public static IEnumerable<int> Generate(this int from, int to)
+    public static IEnumerable<int> To(this int from, int to)
     {
         var x = from;
         if (x <= to)

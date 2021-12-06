@@ -10,7 +10,7 @@ public class LanternFish : ALevel<decimal>
 
     protected override decimal Run(StreamReader reader)
     {
-        var fishCounter = 0.Generate(8).ToDictionary(k => k, _ => 0m);
+        var fishCounter = 0.To(8).ToDictionary(k => k, _ => 0m);
 
         var initialFishes = ReadLine(reader)
             .SelectMany(line => line.Split(','))
