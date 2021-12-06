@@ -39,7 +39,7 @@ static ILevel Level(int level)
         3 => new BinaryDiagnostic(new ResultCollector<int>()),
         4 => new GiantSquid(new ResultCollector<int>()),
         5 => new HydrothermalVenture(new ResultCollector<int>()),
-        6 => new LanternFish(new ResultCollector<long>()),
+        6 => new LanternFish(new ResultCollector<decimal>()),
         _ => throw new InvalidOperationException("Other levels are not implemented yet")
     };
 }

@@ -86,9 +86,9 @@ public class LevelTests
 
     [Theory]
     [InlineData(LevelType.Example, 1, 5934)]
-    [InlineData(LevelType.Example, 2, 26984457539L)]
+    [InlineData(LevelType.Example, 2, 26984457539)]
     [InlineData(LevelType.Quest, 1, 376194)]
-    [InlineData(LevelType.Quest, 2, 0)]
-    public Task LanternFish(LevelType type, int round, long result)
-        => Test<LanternFish, long>(type, round, result);
+    [InlineData(LevelType.Quest, 2, 1693022481538)]
+    public Task LanternFish(LevelType type, int round, decimal result)
+        => Test<LanternFish, decimal>(type, round, result);
 }

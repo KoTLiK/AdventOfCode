@@ -22,7 +22,7 @@ public abstract class ALevel<T> : ILevel
     public ILevel Configure(Setup setup)
     {
         Setup = setup;
-        _partialFileName = $"{Setup?.Level}/{Setup?.Type.ToString()}";
+        _partialFileName = Path.Combine(Setup?.Level.ToString() ?? "", Setup?.Type.ToString() ?? "");
         return this;
     }
 
@@ -62,7 +62,7 @@ public abstract class ALevel<T> : ILevel
         => GetFileNames().FirstOrDefault(name => name.Contains(_partialFileName));
 
     private static IEnumerable<string> GetFileNames()
-        => Directory.GetFiles($"{GetPath()}/Assets", "*", SearchOption.AllDirectories);
+        => Directory.GetFiles(Path.Combine(GetPath(), "Assets"), "*", SearchOption.AllDirectories);
 
     private static string GetPath()
         => Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).AbsolutePath)
