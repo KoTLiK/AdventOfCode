@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace AdventOfCode.Levels._06;
 
 public class LanternFish : ALevel<decimal>
