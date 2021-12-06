@@ -16,5 +16,5 @@ public class BoardBuilder
         _rows.Add(rowData.AsReadOnly());
     }
 
-    public Board Build() => new (new ReadOnlyCollection<IReadOnlyList<Cell>>(_rows));
+    public Board Build() => new(new ReadOnlyCollection<IReadOnlyList<Cell>>(_rows));
 }

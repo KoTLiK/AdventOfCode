@@ -32,7 +32,7 @@ public class Dive : ALevel<int>
             .ToArray();
         var movement = Enum.Parse<Movement>(parts[0], true);
         var value = int.Parse(parts[1]);
-        
+
         return new Command(movement, value);
     }
 }

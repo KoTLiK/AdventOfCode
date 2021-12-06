@@ -12,7 +12,7 @@ using FluentAssertions;
 using Xunit;
 using Xunit.Sdk;
 
-namespace AdventOfCode.Test.Levels;
+namespace AdventOfCode.Test.Levels._2021;
 
 public class LevelTests
 {

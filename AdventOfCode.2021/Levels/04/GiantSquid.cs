@@ -14,7 +14,7 @@ public class GiantSquid : ALevel<int>
         var numbers = RandomNumbers(reader);
         var boards = ReadLine(reader).CreateBoards().ToList();
 
-        
+
         if (Setup is {Round: 1})
         {
             if (CalculateFirstBoard(numbers, boards, out var result))
@@ -48,12 +48,12 @@ public class GiantSquid : ALevel<int>
             {
                 finalBoard ??= boards.First(b => !b.IsSolved);
             }
-            
+
             if (finalBoard?.Check() == true)
             {
                 var value = finalBoard.Calculate();
                 result = value * number;
-                return true;   
+                return true;
             }
         }
 

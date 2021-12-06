@@ -17,7 +17,7 @@ public static class SonarSweepExtensions
             yield return result;
         }
     }
-    
+
     public static IEnumerable<int> SlidingWindowOfSums(this IEnumerable<int> source, int size)
     {
         var queue = new Queue<int>(size);
