@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "Example_1": { "commandName": "Project", "commandLineArgs": "-l 1 -t Example -r 1" },
-    "Example_2": { "commandName": "Project", "commandLineArgs": "-l 1 -t Example -r 2" },
-    "Quest_1": { "commandName": "Project", "commandLineArgs": "-l 1 -t Quest -r 1" },
-    "Quest_2": { "commandName": "Project", "commandLineArgs": "-l 1 -t Quest -r 2" }
+    "Example_1": { "commandName": "Project", "commandLineArgs": "-l 6 -t Example -r 1" },
+    "Example_2": { "commandName": "Project", "commandLineArgs": "-l 6 -t Example -r 2" },
+    "Quest_1": { "commandName": "Project", "commandLineArgs": "-l 6 -t Quest -r 1" },
+    "Quest_2": { "commandName": "Project", "commandLineArgs": "-l 6 -t Quest -r 2" }
   }
 }
