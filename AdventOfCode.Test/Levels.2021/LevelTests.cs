@@ -8,6 +8,7 @@ using AdventOfCode.Levels._03;
 using AdventOfCode.Levels._04;
 using AdventOfCode.Levels._05;
 using AdventOfCode.Levels._06;
+using AdventOfCode.Levels._07;
 using FluentAssertions;
 using Xunit;
 using Xunit.Sdk;
@@ -24,6 +25,7 @@ public class LevelTests
         public const int GiantSquid = 4;
         public const int HydrothermalVenture = 5;
         public const int LanternFish = 6;
+        public const int TheTreacheryOfWhales = 7;
     }
 
     private static async Task Test<TLevel, TResult>(LevelType type, int round, TResult result)
@@ -91,4 +93,12 @@ public class LevelTests
     [InlineData(LevelType.Quest, 2, 1693022481538)]
     public Task LanternFish(LevelType type, int round, decimal result)
         => Test<LanternFish, decimal>(type, round, result);
+
+    [Theory]
+    [InlineData(LevelType.Example, 1, 37)]
+    [InlineData(LevelType.Example, 2, 168)]
+    [InlineData(LevelType.Quest, 1, 348996)]
+    [InlineData(LevelType.Quest, 2, 98231647)]
+    public Task TheTreacheryOfWhales(LevelType type, int round, int result)
+        => Test<TheTreacheryOfWhales, int>(type, round, result);
 }
