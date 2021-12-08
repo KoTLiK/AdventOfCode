@@ -4,7 +4,8 @@ namespace AdventOfCode.Levels._06;
 
 public class LanternFish : ALevel<decimal>
 {
-    public LanternFish(IResultCollector<decimal> resultCollector) : base(resultCollector)
+    public LanternFish(IResultCollector<decimal> resultCollector)
+        : base(resultCollector)
     {
     }
 

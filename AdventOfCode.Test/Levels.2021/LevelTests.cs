@@ -9,33 +9,18 @@ using AdventOfCode.Levels._04;
 using AdventOfCode.Levels._05;
 using AdventOfCode.Levels._06;
 using AdventOfCode.Levels._07;
+using AdventOfCode.Levels._08;
 using FluentAssertions;
 using Xunit;
-using Xunit.Sdk;
 
 namespace AdventOfCode.Test.Levels._2021;
 
 public class LevelTests
 {
-    private class Level
-    {
-        public const int SonarSweep = 1;
-        public const int Dive = 2;
-        public const int BinaryDiagnostic = 3;
-        public const int GiantSquid = 4;
-        public const int HydrothermalVenture = 5;
-        public const int LanternFish = 6;
-        public const int TheTreacheryOfWhales = 7;
-    }
-
     private static async Task Test<TLevel, TResult>(LevelType type, int round, TResult result)
         where TLevel : ALevel<TResult>
     {
-        var level = typeof(Level)
-            .GetField(typeof(TLevel).Name)
-            ?.GetValue(new Level()) as int?
-                    ?? throw new NullException("Level value is not defined");
-
+        var level = int.Parse(typeof(TLevel).Namespace?.Split("_")[1] ?? "0");
         var collector = new ResultCollector<TResult>();
         var setup = new Setup(level, type, round);
 
@@ -101,4 +86,12 @@ public class LevelTests
     [InlineData(LevelType.Quest, 2, 98231647)]
     public Task TheTreacheryOfWhales(LevelType type, int round, int result)
         => Test<TheTreacheryOfWhales, int>(type, round, result);
+
+    [Theory]
+    [InlineData(LevelType.Example, 1, 26)]
+    [InlineData(LevelType.Example, 2, 61229)]
+    [InlineData(LevelType.Quest, 1, 456)]
+    [InlineData(LevelType.Quest, 2, 1091609)]
+    public Task SevenSegmentSearch(LevelType type, int round, int result)
+        => Test<SevenSegmentSearch, int>(type, round, result);
 }

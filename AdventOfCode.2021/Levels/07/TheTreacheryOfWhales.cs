@@ -2,7 +2,8 @@ namespace AdventOfCode.Levels._07;
 
 public class TheTreacheryOfWhales : ALevel<int>
 {
-    public TheTreacheryOfWhales(IResultCollector<int> resultCollector) : base(resultCollector)
+    public TheTreacheryOfWhales(IResultCollector<int> resultCollector)
+        : base(resultCollector)
     {
     }
 

@@ -1,13 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Reflection;
 using AdventOfCode.Arguments;
 using AdventOfCode.Levels;
-using AdventOfCode.Levels._01;
-using AdventOfCode.Levels._02;
-using AdventOfCode.Levels._03;
-using AdventOfCode.Levels._04;
-using AdventOfCode.Levels._05;
-using AdventOfCode.Levels._06;
+using Autofac;
 using CommandLine;
 
 var setup = Parser.Default.ParseArguments<Options>(args)
@@ -30,19 +26,22 @@ var setup = Parser.Default.ParseArguments<Options>(args)
         o => new Setup(o.Level!.Value, o.Type!.Value, o.Round!.Value),
         _ => throw new ArgumentException("Unable to create Setup for the application"));
 
-static ILevel Level(int level)
+var builder = new ContainerBuilder();
+builder.RegisterGeneric(typeof(ResultCollector<>))
+    .As(typeof(IResultCollector<>))
+    .InstancePerDependency();
+
+var types = (Assembly.GetAssembly(typeof(ALevel<>))?.GetTypes() ?? Enumerable.Empty<Type>())
+    .Where(t => t.IsClass && !t.IsAbstract && t.GetInterface(nameof(ILevel)) is not null)
+    .Select(t => (Type: t, Key: int.Parse(t.Namespace?.Split("_")[1] ?? "0")))
+    .ToDictionary(t => t.Key, t => t.Type);
+
+foreach (var (key, type) in types)
 {
-    return level switch
-    {
-        1 => new SonarSweep(new ResultCollector<int>()),
-        2 => new Dive(new ResultCollector<int>()),
-        3 => new BinaryDiagnostic(new ResultCollector<int>()),
-        4 => new GiantSquid(new ResultCollector<int>()),
-        5 => new HydrothermalVenture(new ResultCollector<int>()),
-        6 => new LanternFish(new ResultCollector<decimal>()),
-        _ => throw new InvalidOperationException("Other levels are not implemented yet")
-    };
+    builder.RegisterType(type).Keyed<ILevel>(key);
 }
+
+var container = builder.Build();
 
 Console.WriteLine("Welcome to the Advent of Code!");
 Console.WriteLine("     Level:    {0}", setup.Level);
@@ -52,7 +51,8 @@ Console.WriteLine("============ START ============");
 
 try
 {
-    return await Level(setup.Level)
+    return await container
+        .ResolveKeyed<ILevel>(setup.Level)
         .Configure(setup)
         .RunAsync();
 }
