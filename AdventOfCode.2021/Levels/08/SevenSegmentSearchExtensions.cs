@@ -25,6 +25,38 @@ public static class SevenSegmentSearchExtensions
             _ => null
         };
 
+    /// <summary>
+    /// Friend's algorithm (language rust)
+    /// </summary>
+    public static IEnumerable<(int Digit, string Pattern)> DecodeDigits2(this IEnumerable<string> source)
+    {
+        var patterns = source.ToList();
+        var _1 = patterns.Single(p => p.Length == 2);
+        var _4 = patterns.Single(p => p.Length == 4);
+
+        foreach (var pattern in patterns)
+        {
+            var one = pattern.Except(_1).Count();
+            var four = pattern.Except(_4).Count();
+            var digit = (pattern.Length, one, four) switch
+            {
+                (2, _, _) => 1,
+                (3, _, _) => 7,
+                (4, _, _) => 4,
+                (7, _, _) => 8,
+                (5, 4, 3) => 2,
+                (5, 3, 2) => 3,
+                (5, 4, 2) => 5,
+                (6, 4, 3) => 0,
+                (6, 5, 3) => 6,
+                (6, 4, 2) => 9,
+                (_, _, _) => throw new InvalidOperationException()
+            };
+
+            yield return (Digit: digit, Pattern: pattern);
+        }
+    }
+
     public static IEnumerable<(int Digit, string Pattern)> DecodeDigits(this IEnumerable<string> source)
     {
         var patterns = source.ToList();
