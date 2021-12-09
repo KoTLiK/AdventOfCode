@@ -10,6 +10,7 @@ using AdventOfCode.Levels._05;
 using AdventOfCode.Levels._06;
 using AdventOfCode.Levels._07;
 using AdventOfCode.Levels._08;
+using AdventOfCode.Levels._09;
 using FluentAssertions;
 using Xunit;
 
@@ -94,4 +95,12 @@ public class LevelTests
     [InlineData(LevelType.Quest, 2, 1091609)]
     public Task SevenSegmentSearch(LevelType type, int round, int result)
         => Test<SevenSegmentSearch, int>(type, round, result);
+
+    [Theory]
+    [InlineData(LevelType.Example, 1, 15)]
+    [InlineData(LevelType.Example, 2, 1134)]
+    [InlineData(LevelType.Quest, 1, 539)]
+    [InlineData(LevelType.Quest, 2, 736920)]
+    public Task SmokeBasin(LevelType type, int round, int result)
+        => Test<SmokeBasin, int>(type, round, result);
 }
