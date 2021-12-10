@@ -11,6 +11,7 @@ using AdventOfCode.Levels._06;
 using AdventOfCode.Levels._07;
 using AdventOfCode.Levels._08;
 using AdventOfCode.Levels._09;
+using AdventOfCode.Levels._10;
 using FluentAssertions;
 using Xunit;
 
@@ -103,4 +104,12 @@ public class LevelTests
     [InlineData(LevelType.Quest, 2, 736920)]
     public Task SmokeBasin(LevelType type, int round, int result)
         => Test<SmokeBasin, int>(type, round, result);
+
+    [Theory]
+    [InlineData(LevelType.Example, 1, 26397)]
+    [InlineData(LevelType.Example, 2, 288957)]
+    [InlineData(LevelType.Quest, 1, 369105)]
+    [InlineData(LevelType.Quest, 2, 3999363569)]
+    public Task SyntaxScoring(LevelType type, int round, long result)
+        => Test<SyntaxScoring, long>(type, round, result);
 }
