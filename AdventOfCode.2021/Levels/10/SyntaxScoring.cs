@@ -4,8 +4,6 @@ namespace AdventOfCode.Levels._10;
 
 public class SyntaxScoring : ALevel<long>
 {
-    private static readonly char[] Openings = {'(', '[', '{', '<'};
-
     private static readonly IReadOnlyDictionary<char, int> CorruptedScore =
         new ReadOnlyDictionary<char, int>(new Dictionary<char, int> {{')', 3}, {']', 57}, {'}', 1197}, {'>', 25137}});
 
@@ -46,7 +44,7 @@ public class SyntaxScoring : ALevel<long>
         var stack = new Stack<char>();
         foreach (var c in line)
         {
-            if (Openings.Contains(c))
+            if (IsOpening(c))
             {
                 stack.Push(c);
             }
@@ -63,6 +61,8 @@ public class SyntaxScoring : ALevel<long>
 
         return stack;
     }
+
+    private static bool IsOpening(char c) => c is '(' or '[' or '{' or '<';
 
     private static char Opposite(char source)
         => source switch
