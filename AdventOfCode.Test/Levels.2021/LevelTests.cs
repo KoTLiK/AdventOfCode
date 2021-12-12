@@ -12,6 +12,7 @@ using AdventOfCode.Levels._07;
 using AdventOfCode.Levels._08;
 using AdventOfCode.Levels._09;
 using AdventOfCode.Levels._10;
+using AdventOfCode.Levels._11;
 using FluentAssertions;
 using Xunit;
 
@@ -112,4 +113,12 @@ public class LevelTests
     [InlineData(LevelType.Quest, 2, 3999363569)]
     public Task SyntaxScoring(LevelType type, int round, long result)
         => Test<SyntaxScoring, long>(type, round, result);
+
+    [Theory]
+    [InlineData(LevelType.Example, 1, 1656)]
+    [InlineData(LevelType.Example, 2, 195)]
+    [InlineData(LevelType.Quest, 1, 1723)]
+    [InlineData(LevelType.Quest, 2, 327)]
+    public Task DumboOctopus(LevelType type, int round, int result)
+        => Test<DumboOctopus, int>(type, round, result);
 }
