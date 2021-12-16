@@ -13,6 +13,7 @@ using AdventOfCode.Levels._08;
 using AdventOfCode.Levels._09;
 using AdventOfCode.Levels._10;
 using AdventOfCode.Levels._11;
+using AdventOfCode.Levels._12;
 using FluentAssertions;
 using Xunit;
 
@@ -121,4 +122,12 @@ public class LevelTests
     [InlineData(LevelType.Quest, 2, 327)]
     public Task DumboOctopus(LevelType type, int round, int result)
         => Test<DumboOctopus, int>(type, round, result);
+
+    [Theory]
+    [InlineData(LevelType.Example, 1, 226)]
+    [InlineData(LevelType.Example, 2, 3509)]
+    [InlineData(LevelType.Quest, 1, 5254)]
+    [InlineData(LevelType.Quest, 2, 149385)]
+    public Task PassagePathing(LevelType type, int round, int result)
+        => Test<PassagePathing, int>(type, round, result);
 }
