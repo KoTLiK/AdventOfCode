@@ -14,6 +14,7 @@ using AdventOfCode.Levels._09;
 using AdventOfCode.Levels._10;
 using AdventOfCode.Levels._11;
 using AdventOfCode.Levels._12;
+using AdventOfCode.Levels._13;
 using FluentAssertions;
 using Xunit;
 
@@ -130,4 +131,12 @@ public class LevelTests
     [InlineData(LevelType.Quest, 2, 149385)]
     public Task PassagePathing(LevelType type, int round, int result)
         => Test<PassagePathing, int>(type, round, result);
+
+    [Theory]
+    [InlineData(LevelType.Example, 1, "17")]
+    [InlineData(LevelType.Example, 2, "0")]
+    [InlineData(LevelType.Quest, 1, "810")]
+    [InlineData(LevelType.Quest, 2, "0")]
+    public Task TransparentOrigami(LevelType type, int round, string result)
+        => Test<TransparentOrigami, string>(type, round, result);
 }
