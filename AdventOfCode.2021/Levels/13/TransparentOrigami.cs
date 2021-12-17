@@ -23,10 +23,15 @@ public class TransparentOrigami : ALevel<string>
         
         if (Setup is {Round: 1})
         {
-            return Folding(folds.First(), dots).Count.ToString();
+            Folding(folds.First(), dots);
+            return dots.Distinct().Count().ToString();
         }
 
-        dots = folds.Aggregate(dots, (current, fold) => Folding(fold, current));
+        foreach (var fold in folds)
+        {
+            Folding(fold, dots);
+            dots = dots.Distinct().ToList();
+        }
 
         Print(dots);
         /*
@@ -49,7 +54,7 @@ public class TransparentOrigami : ALevel<string>
     {
         foreach (var group in dots.GroupBy(d => d.Row).OrderBy(g => g.Key))
         {
-            var row = group.Select(d => d.Column).OrderBy(v => v).ToHashSet();
+            var row = group.Select(d => d.Column).ToHashSet();
             for (var i = 0; i < row.Max(); i++)
             {
                 Console.Write(row.Contains(i) ? '#' : ' ');
@@ -59,7 +64,7 @@ public class TransparentOrigami : ALevel<string>
         }
     }
 
-    private static List<Dot> Folding(Fold fold, List<Dot> dots)
+    private static void Folding(Fold fold, IReadOnlyCollection<Dot> dots)
     {
         if (fold.Axis == Fold.Type.Row)
         {
@@ -68,11 +73,10 @@ public class TransparentOrigami : ALevel<string>
                 throw new InvalidOperationException();
             }
 
-            var folded = dots.Where(d => d.Row > fold.Position)
-                .Select(d => d with {Row = fold.Position - (d.Row - fold.Position)})
-                .ToList();
-            dots.AddRange(folded);
-            return dots.Where(d => d.Row < fold.Position).Distinct().ToList();
+            foreach (var dot in dots.Where(d => d.Row > fold.Position))
+            {
+                dot.Row = 2 * fold.Position - dot.Row;
+            }
         }
         else
         {
@@ -81,11 +85,10 @@ public class TransparentOrigami : ALevel<string>
                 throw new InvalidOperationException();
             }
 
-            var folded = dots.Where(d => d.Column > fold.Position)
-                .Select(d => d with {Column = fold.Position - (d.Column - fold.Position)})
-                .ToList();
-            dots.AddRange(folded);
-            return dots.Where(d => d.Column < fold.Position).Distinct().ToList();
+            foreach (var dot in dots.Where(d => d.Column > fold.Position))
+            {
+                dot.Column = 2 * fold.Position - dot.Column;
+            }
         }
     }
 }

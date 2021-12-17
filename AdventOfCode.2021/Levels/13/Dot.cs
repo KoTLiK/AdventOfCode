@@ -3,19 +3,23 @@ using System.Diagnostics;
 namespace AdventOfCode.Levels._13;
 
 [DebuggerDisplay("({Column},{Row})")]
-public sealed record Dot(int Column, int Row)
+public sealed class Dot
 {
-    public Dot(string rawX, string rawY)
-        : this(int.Parse(rawX), int.Parse(rawY))
+    public int Column { get; set; }
+    public int Row { get; set; }
+
+    public Dot(string x, string y)
     {
+        Column = int.Parse(x);
+        Row = int.Parse(y);
     }
 
-    public override int GetHashCode() => HashCode.Combine(Column, Row);
+    public override bool Equals(object? obj)
+        => ReferenceEquals(this, obj) || obj is Dot other && Equals(other);
 
-    public bool Equals(Dot? other)
-    {
-        if (ReferenceEquals(null, other)) return false;
-        if (ReferenceEquals(this, other)) return true;
-        return Column == other.Column && Row == other.Row;
-    }
+    public override int GetHashCode()
+        => HashCode.Combine(Column, Row);
+
+    private bool Equals(Dot other)
+        => Column == other.Column && Row == other.Row;
 }
