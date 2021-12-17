@@ -35,16 +35,14 @@ public class TransparentOrigami : ALevel<string>
 
         Print(dots);
         /*
-         *     ABCDEFGHIJKLMNOPQRSTUVWXYZ
-         *
-         *     #  # #    ###  #  # ###   ##  #### ##
-         *     #  # #    #  # #  # #  # #  # #    #
-         *     #### #    ###  #  # ###  #    ###  #
-         *     #  # #    #  # #  # #  # # ## #    ##
-         *     #  # #    #  # #  # #  # #  # #    #
-         *     #  # #### ###   ##  ###   ### #    #
-         *
-         *     TODO Don't know the last letter. Where I have a mistake? 
+
+         #  # #    ###  #  # ###   ##  #### ###
+         #  # #    #  # #  # #  # #  # #    #  #
+         #### #    ###  #  # ###  #    ###  #  #
+         #  # #    #  # #  # #  # # ## #    ###
+         #  # #    #  # #  # #  # #  # #    # #
+         #  # #### ###   ##  ###   ### #    #  #
+ 
          */
 
         return dots.Count.ToString();
@@ -55,7 +53,7 @@ public class TransparentOrigami : ALevel<string>
         foreach (var group in dots.GroupBy(d => d.Row).OrderBy(g => g.Key))
         {
             var row = group.Select(d => d.Column).ToHashSet();
-            for (var i = 0; i < row.Max(); i++)
+            for (var i = 0; i <= row.Max(); i++)
             {
                 Console.Write(row.Contains(i) ? '#' : ' ');
             }
