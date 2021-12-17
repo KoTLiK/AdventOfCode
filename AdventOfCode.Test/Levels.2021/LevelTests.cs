@@ -133,10 +133,10 @@ public class LevelTests
         => Test<PassagePathing, int>(type, round, result);
 
     [Theory]
-    [InlineData(LevelType.Example, 1, "17")]
-    // [InlineData(LevelType.Example, 2, "0")] // Result is "O"
-    [InlineData(LevelType.Quest, 1, "810")]
-    // [InlineData(LevelType.Quest, 2, "0")] // Result is "HLBUBGFR"
-    public Task TransparentOrigami(LevelType type, int round, string result)
-        => Test<TransparentOrigami, string>(type, round, result);
+    [InlineData(LevelType.Example, 1, 17)]
+    // [InlineData(LevelType.Example, 2, 0)] // Result is "O"
+    [InlineData(LevelType.Quest, 1, 810)]
+    // [InlineData(LevelType.Quest, 2, 0)] // Result is "HLBUBGFR"
+    public Task TransparentOrigami(LevelType type, int round, int result)
+        => Test<TransparentOrigami, int>(type, round, result);
 }

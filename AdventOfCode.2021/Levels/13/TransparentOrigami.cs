@@ -1,12 +1,12 @@
 ﻿namespace AdventOfCode.Levels._13;
 
-public class TransparentOrigami : ALevel<string>
+public class TransparentOrigami : ALevel<int>
 {
-    public TransparentOrigami(IResultCollector<string> resultCollector) : base(resultCollector)
+    public TransparentOrigami(IResultCollector<int> resultCollector) : base(resultCollector)
     {
     }
 
-    protected override string Run(StreamReader reader)
+    protected override int Run(StreamReader reader)
     {
         var lines = ReadLine(reader).ToList();
         var dots = lines
@@ -24,7 +24,7 @@ public class TransparentOrigami : ALevel<string>
         if (Setup is {Round: 1})
         {
             Folding(folds.First(), dots);
-            return dots.Distinct().Count().ToString();
+            return dots.Distinct().Count();
         }
 
         foreach (var fold in folds)
@@ -45,7 +45,7 @@ public class TransparentOrigami : ALevel<string>
  
          */
 
-        return dots.Count.ToString();
+        return dots.Count;
     }
 
     private static void Print(IEnumerable<Dot> dots)
