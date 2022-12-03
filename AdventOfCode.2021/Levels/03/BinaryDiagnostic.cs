@@ -27,10 +27,10 @@ public class BinaryDiagnostic : ALevel<int>
     }
 
     private static int OxygenGeneratorRating(IEnumerable<string> lines, int length)
-        => RatingCalculator(lines, BinaryDiagnosticExtensions.MostCommon, length, 0);
+        => RatingCalculator(lines, Extensions.MostCommon, length, 0);
 
     private static int Co2ScrubberRating(IEnumerable<string> lines, int length)
-        => RatingCalculator(lines, BinaryDiagnosticExtensions.LeastCommon, length, 0);
+        => RatingCalculator(lines, Extensions.LeastCommon, length, 0);
 
     private static int RatingCalculator(IEnumerable<string> lines, Func<int, char> selector, int length, int position)
     {

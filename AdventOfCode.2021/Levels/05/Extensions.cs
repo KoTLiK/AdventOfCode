@@ -1,6 +1,6 @@
 namespace AdventOfCode.Levels._05;
 
-public static class HydrothermalVentureExtensions
+public static class Extensions
 {
     public static IEnumerable<Line> CreateLines(this IEnumerable<string> source)
     {

@@ -1,6 +1,6 @@
 namespace AdventOfCode.Levels._08;
 
-public static class SevenSegmentSearchExtensions
+public static class Extensions
 {
     private static IEnumerable<string> DigitSplit(string data)
         => data.Split(" ")

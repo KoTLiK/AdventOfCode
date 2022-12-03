@@ -1,6 +1,6 @@
 namespace AdventOfCode.Levels._01;
 
-public static class SonarSweepExtensions
+public static class Extensions
 {
     public static IEnumerable<bool?> IncreaseCheck(this IEnumerable<int> source, int? previousValue)
     {

@@ -1,6 +1,6 @@
 namespace AdventOfCode.Levels._03;
 
-public static class BinaryDiagnosticExtensions
+public static class Extensions
 {
     public static int BitOccurence(this IEnumerable<string> source, int bitPosition)
         => source.Where(s => bitPosition < s.Length)

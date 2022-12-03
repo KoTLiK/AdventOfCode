@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <RootNamespace>AdventOfCode.2022</RootNamespace>
+        <RootNamespace>AdventOfCode</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
