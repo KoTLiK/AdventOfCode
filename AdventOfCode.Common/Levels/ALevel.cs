@@ -8,16 +8,16 @@ namespace AdventOfCode.Levels;
 public abstract class ALevel<T> : ILevel
 {
     private readonly IResultCollector<T> _resultCollector;
-    protected Setup Setup = null!;
     private string _partialFileName = string.Empty;
-
-    private string FileName
-        => GetFileName() ?? throw new InvalidOperationException("Unable to find file in file-system");
+    protected Setup Setup = null!;
 
     protected ALevel(IResultCollector<T> resultCollector)
     {
         _resultCollector = resultCollector;
     }
+
+    private string FileName
+        => GetFileName() ?? throw new InvalidOperationException("Unable to find file in file-system");
 
     public ILevel Configure(Setup setup)
     {
@@ -52,7 +52,7 @@ public abstract class ALevel<T> : ILevel
     private void Result(T result)
     {
         _resultCollector.Collect(result);
-        Console.WriteLine(JsonSerializer.Serialize(result));
+        Log.Information(JsonSerializer.Serialize(result));
     }
 
     private StreamReader ContentStreamReader()

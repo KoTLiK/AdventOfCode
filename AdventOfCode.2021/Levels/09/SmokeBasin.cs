@@ -65,7 +65,7 @@ public class SmokeBasin : ALevel<int>
             if (!basin.Contains(location!))
             {
                 gather.Add(location!);
-                basin.Add(location!);   
+                basin.Add(location!);
             }
         }
 

@@ -1,7 +1,4 @@
-using System;
-using System.Threading.Tasks;
 using AdventOfCode.Arguments;
-using AdventOfCode.Levels;
 using AdventOfCode.Levels._01;
 using AdventOfCode.Levels._02;
 using AdventOfCode.Levels._03;
@@ -15,25 +12,13 @@ using AdventOfCode.Levels._10;
 using AdventOfCode.Levels._11;
 using AdventOfCode.Levels._12;
 using AdventOfCode.Levels._13;
-using FluentAssertions;
-using Xunit;
 
 namespace AdventOfCode.Test.Levels._2021;
 
-public class LevelTests
+public class LevelTests : LevelTest
 {
-    private static async Task Test<TLevel, TResult>(LevelType type, int round, TResult result)
-        where TLevel : ALevel<TResult>
+    public LevelTests(ITestOutputHelper output) : base(output)
     {
-        var level = int.Parse(typeof(TLevel).Namespace?.Split("_")[1] ?? "0");
-        var collector = new ResultCollector<TResult>();
-        var setup = new Setup(level, type, round);
-
-        var exitCode = await (Activator.CreateInstance(typeof(TLevel), collector) as TLevel)!
-            .Configure(setup).RunAsync();
-
-        exitCode.Should().Be(0);
-        collector.Retrieve().Should().Be(result);
     }
 
     [Theory]

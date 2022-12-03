@@ -5,14 +5,18 @@ namespace AdventOfCode.Levels._13;
 [DebuggerDisplay("{FoldAlong}={Position}")]
 public sealed record Fold(string FoldAlong, int Position)
 {
-    public Type Axis => FoldAlong == "y" ? Type.Row : Type.Column;
+    public enum Type
+    {
+        Row,
+        Column
+    }
 
     public Fold(string foldAlong, string position)
         : this(foldAlong, int.Parse(position))
     {
     }
 
-    public override int GetHashCode() => HashCode.Combine(FoldAlong, Position);
+    public Type Axis => FoldAlong == "y" ? Type.Row : Type.Column;
 
     public bool Equals(Fold? other)
     {
@@ -20,10 +24,6 @@ public sealed record Fold(string FoldAlong, int Position)
         if (ReferenceEquals(this, other)) return true;
         return FoldAlong == other.FoldAlong && Position == other.Position;
     }
-    
-    public enum Type
-    {
-        Row,
-        Column
-    }
+
+    public override int GetHashCode() => HashCode.Combine(FoldAlong, Position);
 }

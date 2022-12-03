@@ -9,7 +9,9 @@ public static class SevenSegmentSearchExtensions
             .ToList();
 
     public static IEnumerable<Entry> CreateEntries(this IEnumerable<string> source)
-        => from line in source select line.Split("|") into data
+        => from line in source
+            select line.Split("|")
+            into data
             let patterns = DigitSplit(data[0])
             let digits = DigitSplit(data[1])
             select new Entry(patterns, digits);

@@ -11,7 +11,7 @@ public static class PassagePathingExtensions
                 (_, "start") => new Path(p.To, p.From),
                 ("end", _) => new Path(p.To, p.From),
                 (_, "end") => p,
-                (_, _) => null 
+                (_, _) => null
             };
 
         foreach (var p in source)

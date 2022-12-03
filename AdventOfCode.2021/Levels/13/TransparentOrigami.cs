@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode.Levels._13;
+﻿using System.Text;
+
+namespace AdventOfCode.Levels._13;
 
 public class TransparentOrigami : ALevel<int>
 {
@@ -20,7 +22,6 @@ public class TransparentOrigami : ALevel<int>
             .Select(f => new Fold(f[0], f[1]))
             .ToList();
 
-        
         if (Setup is {Round: 1})
         {
             Folding(folds.First(), dots);
@@ -53,12 +54,13 @@ public class TransparentOrigami : ALevel<int>
         foreach (var group in dots.GroupBy(d => d.Row).OrderBy(g => g.Key))
         {
             var row = group.Select(d => d.Column).ToHashSet();
+            var builder = new StringBuilder(row.Max());
             for (var i = 0; i <= row.Max(); i++)
             {
-                Console.Write(row.Contains(i) ? '#' : ' ');
+                builder.Append(row.Contains(i) ? '#' : ' ');
             }
 
-            Console.WriteLine();
+            Log.Information(builder.ToString());
         }
     }
 

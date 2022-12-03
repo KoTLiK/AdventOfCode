@@ -6,17 +6,17 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <RootNamespace>AdventOfCode.2021</RootNamespace>
+        <RootNamespace>AdventOfCode.2022</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Include="Assets\*\*">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+        <None Include="Assets\*\*">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AdventOfCode.Common\AdventOfCode.Common.csproj" />
+        <ProjectReference Include="..\AdventOfCode.Common\AdventOfCode.Common.csproj" />
     </ItemGroup>
 
 </Project>

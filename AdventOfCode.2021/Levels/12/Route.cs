@@ -87,6 +87,7 @@ public sealed class Route
         {
             _builder.Append(',');
         }
+
         _builder.Append(key);
 
         return this;
