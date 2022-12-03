@@ -1,5 +1,6 @@
 using AdventOfCode.Arguments;
 using AdventOfCode.Levels._01;
+using AdventOfCode.Levels._02;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -18,4 +19,12 @@ public class LevelTests : LevelTest
     [InlineData(LevelType.Quest, 2, 208180)]
     public Task CalorieCounting(LevelType type, int round, int result)
         => Test<CalorieCounting, int>(type, round, result);
+
+    [Theory]
+    [InlineData(LevelType.Example, 1, 15)]
+    [InlineData(LevelType.Example, 2, 12)]
+    [InlineData(LevelType.Quest, 1, 13268)]
+    [InlineData(LevelType.Quest, 2, 15508)]
+    public Task RockPaperScissors(LevelType type, int round, int result)
+        => Test<RockPaperScissors, int>(type, round, result);
 }
