@@ -10,7 +10,16 @@ public class SonarSweep : ALevel<int>
     protected override int Run(StreamReader reader)
     {
         int? previousValue = null;
-        var parsedLines = ReadLine(reader).Select(int.Parse);
+        var parsedLines = ReadLine(reader).Select(line =>
+        {
+            if (int.TryParse(line, out var result))
+            {
+                return result;
+            }
+
+            return 0;
+        })
+            .ToList();
 
         var roundModifications = Setup.Round == 1
             ? parsedLines

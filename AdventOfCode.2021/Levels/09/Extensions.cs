@@ -1,6 +1,6 @@
 namespace AdventOfCode.Levels._09;
 
-public static class SmokeBasinExtensions
+public static class Extensions
 {
     private static Location? Seek(int row, int column, IReadOnlyList<List<Location>> data)
     {

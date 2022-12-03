@@ -1,6 +1,6 @@
 namespace AdventOfCode.Levels._07;
 
-public static class TheTreacheryOfWhalesExtensions
+public static class Extensions
 {
     public static IEnumerable<(int Position, int Distance)> LinearDistanceFrom(
         this IEnumerable<int> source,

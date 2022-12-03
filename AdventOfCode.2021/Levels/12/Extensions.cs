@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Levels._12;
 
-public static class PassagePathingExtensions
+public static class Extensions
 {
     public static IEnumerable<Path> ConvertToAllPaths(this IEnumerable<Path> source)
     {

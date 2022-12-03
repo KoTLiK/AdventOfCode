@@ -1,6 +1,6 @@
 namespace AdventOfCode.Levels._04;
 
-public static class GiantSquidExtensions
+public static class Extensions
 {
     public static IEnumerable<Board> CreateBoards(this IEnumerable<string> source)
     {

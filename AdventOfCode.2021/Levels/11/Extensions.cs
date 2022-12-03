@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Levels._11;
 
-public static class DumboOctopusExtensions
+public static class Extensions
 {
     public static bool Update(this HashSet<Point> data, Point point)
         => data.Remove(point) && data.Add(point);
