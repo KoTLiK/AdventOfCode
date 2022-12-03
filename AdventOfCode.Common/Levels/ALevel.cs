@@ -43,7 +43,7 @@ public abstract class ALevel<T> : ILevel
 
     protected static IEnumerable<string> ReadLine(TextReader reader)
     {
-        while (reader.ReadLine() is string line)
+        while (reader.ReadLine() is { } line)
         {
             yield return line;
         }
