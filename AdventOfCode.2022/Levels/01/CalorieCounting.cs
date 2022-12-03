@@ -11,10 +11,19 @@ public class CalorieCounting : ALevel<int>
     {
         var elfs = ReadLine(reader)
             .Select(ParseLine)
-            .CreateElf()
-            .ToList();
+            .CreateElf();
 
-        return 0;
+        if (Setup.Round == 1)
+        {
+            return elfs
+                .MaxBy(e => e.TotalCalories)!
+                .TotalCalories;
+        }
+
+        return elfs
+            .OrderByDescending(e => e.TotalCalories)
+            .Take(3)
+            .Sum(e => e.TotalCalories);
     }
 
     private static int? ParseLine(string line)

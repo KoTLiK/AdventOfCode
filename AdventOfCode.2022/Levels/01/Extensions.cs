@@ -21,5 +21,3 @@ public static class Extensions
         yield return new Elf(calories);
     }
 }
-
-public record Elf(ICollection<int> FoodCalories);

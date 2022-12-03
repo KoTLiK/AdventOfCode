@@ -12,10 +12,10 @@ public class LevelTests : LevelTest
     }
 
     [Theory]
-    [InlineData(LevelType.Example, 1, 7)]
-    // [InlineData(LevelType.Example, 2, 5)]
-    // [InlineData(LevelType.Quest, 1, 1665)]
-    // [InlineData(LevelType.Quest, 2, 1702)]
+    [InlineData(LevelType.Example, 1, 24000)]
+    [InlineData(LevelType.Example, 2, 45000)]
+    [InlineData(LevelType.Quest, 1, 69912)]
+    [InlineData(LevelType.Quest, 2, 208180)]
     public Task CalorieCounting(LevelType type, int round, int result)
         => Test<CalorieCounting, int>(type, round, result);
 }
