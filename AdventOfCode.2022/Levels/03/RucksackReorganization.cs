@@ -9,29 +9,21 @@ public class RucksackReorganization : ALevel<int>
 
     protected override int Run(StreamReader reader)
     {
-        var rucksacks = ReadLine(reader)
-            .Select(line => new Rucksack(line))
-            .ToList(); // TODO
+        var rucksacks = ReadLine(reader).Select(line => new Rucksack(line));
 
-        if (IsFirstRound())
-        {
-            return rucksacks
-                .Select(r => Intersection(r.FirstCompartment, r.SecondCompartment))
-                .Select(i => i.Select(c => c.Priority()).ToArray())
-                .SelectMany(i => i)
-                .Sum();
-        }
+        var result = IsFirstRound()
+            ? rucksacks.Select(Intersection)
+            : rucksacks.GroupByAmount(3).Select(Intersection);
 
-        return rucksacks
-            .GroupByAmount(3)
-            .Select(Intersection)
+        return result
             .Select(i => i.Select(c => c.Priority()).ToArray())
             .SelectMany(i => i)
             .Sum();
     }
 
-    private static IEnumerable<char> Intersection(string first, string second)
-        => first.Distinct().Intersect(second.Distinct());
+    private static IEnumerable<char> Intersection(Rucksack rucksack)
+        => rucksack.FirstCompartment.Distinct() 
+            .Intersect(rucksack.SecondCompartment.Distinct());
 
     private static HashSet<char> Intersection(IList<Rucksack> rucksacks)
         => rucksacks.Skip(1)
