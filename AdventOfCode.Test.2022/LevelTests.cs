@@ -2,6 +2,7 @@ using AdventOfCode.Arguments;
 using AdventOfCode.Levels._01;
 using AdventOfCode.Levels._02;
 using AdventOfCode.Levels._03;
+using AdventOfCode.Levels._04;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -36,4 +37,12 @@ public class LevelTests : LevelTest
     [InlineData(LevelType.Quest, 2, 2515)]
     public Task RucksackReorganization(LevelType type, int round, int result)
         => Test<RucksackReorganization, int>(type, round, result);
+
+    [Theory]
+    [InlineData(LevelType.Example, 1, 2)]
+    [InlineData(LevelType.Example, 2, 4)]
+    [InlineData(LevelType.Quest, 1, 532)]
+    [InlineData(LevelType.Quest, 2, 854)]
+    public Task CampCleanup(LevelType type, int round, int result)
+        => Test<CampCleanup, int>(type, round, result);
 }
