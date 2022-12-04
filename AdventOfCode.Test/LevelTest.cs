@@ -1,6 +1,8 @@
-﻿using AdventOfCode.Arguments;
+﻿using System.Diagnostics;
+using AdventOfCode.Arguments;
 using AdventOfCode.Levels;
 using FluentAssertions;
+using FluentAssertions.Extensions;
 using Serilog;
 using Xunit.Abstractions;
 
@@ -30,9 +32,13 @@ public abstract class LevelTest : IDisposable
         var level = int.Parse(typeof(TLevel).Namespace?.Split("_")[1] ?? "0");
         var collector = new ResultCollector<TResult>();
         var setup = new Setup(level, type, round);
+        var test = (Activator.CreateInstance(typeof(TLevel), collector) as TLevel)!.Configure(setup);
 
-        var exitCode = await (Activator.CreateInstance(typeof(TLevel), collector) as TLevel)!
-            .Configure(setup).RunAsync();
+        var watch = new Stopwatch();
+        watch.Start();
+        var exitCode = await test.RunAsync();
+        watch.Stop();
+        Log.Information("{@TimeElapsed}.{@MicroSeconds}ms", watch.ElapsedMilliseconds, watch.Elapsed.Microseconds());
 
         exitCode.Should().Be(0);
         collector.Retrieve().Should().Be(result);
