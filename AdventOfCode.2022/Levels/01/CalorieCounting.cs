@@ -13,7 +13,7 @@ public class CalorieCounting : ALevel<int>
             .Select(ParseLine)
             .CreateElf();
 
-        if (Setup.Round == 1)
+        if (IsFirstRound())
         {
             return elfs
                 .MaxBy(e => e.TotalCalories)!

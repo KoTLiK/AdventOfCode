@@ -13,7 +13,7 @@ public class RockPaperScissors : ALevel<int>
             .Select(line => line.Split(' '))
             .Select(parts => new Round(parts[0], parts[1]));
 
-        var roundQuery = Setup.Round == 1
+        var roundQuery = IsFirstRound()
             ? rounds.Select(round => (
                 Hand: round.HandTwo,
                 Result: round.HandTwo.Beats(round.HandOne)))

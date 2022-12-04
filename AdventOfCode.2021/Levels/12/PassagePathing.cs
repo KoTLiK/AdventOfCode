@@ -39,7 +39,7 @@ public class PassagePathing : ALevel<int>
         data.TryGetValue(key ?? string.Empty, out var routes);
         var query = from item in routes ?? new HashSet<Path>()
             let nextRoute = current.Copy()
-            let nextKey = Setup.Round == 1
+            let nextKey = IsFirstRound()
                 ? nextRoute.Step(item)
                 : nextRoute.StepSecond(item)
             where nextKey is not null
@@ -53,7 +53,7 @@ public class PassagePathing : ALevel<int>
         // foreach (var item in routes ?? new HashSet<Path>())
         // {
         //     var nextRoute = current.Copy();
-        //     var nextKey = Setup.Round == 1
+        //     var nextKey = IsFirstRound()
         //         ? nextRoute.Step(item)
         //         : nextRoute.StepSecond(item);
         //     if (nextKey is null) continue;

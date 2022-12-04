@@ -49,6 +49,12 @@ public abstract class ALevel<T> : ILevel
         }
     }
 
+    protected bool IsFirstRound()
+        => Setup.Round == 1;
+
+    protected bool IsSecondRound()
+        => Setup.Round == 2;
+
     private void Result(T result)
     {
         _resultCollector.Collect(result);

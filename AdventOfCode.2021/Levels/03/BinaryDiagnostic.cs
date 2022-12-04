@@ -10,7 +10,7 @@ public class BinaryDiagnostic : ALevel<int>
     protected override int Run(StreamReader reader)
     {
         var lines = ReadLine(reader).ToList();
-        var result = Setup.Round == 1
+        var result = IsFirstRound()
             ? PowerConsumption(lines)
             : LifeSupportRating(lines);
 

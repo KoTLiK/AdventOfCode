@@ -21,7 +21,7 @@ public class SonarSweep : ALevel<int>
         })
             .ToList();
 
-        var roundModifications = Setup.Round == 1
+        var roundModifications = IsFirstRound()
             ? parsedLines
             : parsedLines.SlidingWindowOfSums(3);
 

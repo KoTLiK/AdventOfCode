@@ -15,7 +15,7 @@ public class DumboOctopus : ALevel<int>
             .ToHashSet();
 
         var flashCounter = 0;
-        var daysLimit = Setup.Round == 1 ? 100 : int.MaxValue;
+        var daysLimit = IsFirstRound() ? 100 : int.MaxValue;
         var daysPassed = 0;
         while (daysPassed++ < daysLimit)
         {

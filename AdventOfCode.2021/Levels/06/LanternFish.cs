@@ -21,7 +21,7 @@ public class LanternFish : ALevel<decimal>
             fishCounter[fish]++;
         }
 
-        var daysLimit = Setup.Round == 1 ? 80 : 256;
+        var daysLimit = IsFirstRound() ? 80 : 256;
         var daysPassed = 0;
         while (daysPassed++ < daysLimit)
         {
