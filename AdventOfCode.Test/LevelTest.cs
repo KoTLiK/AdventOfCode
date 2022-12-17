@@ -15,7 +15,6 @@ public abstract class LevelTest : IDisposable
         Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.Debug()
             .WriteTo.TestOutput(output)
             .CreateLogger();
     }
